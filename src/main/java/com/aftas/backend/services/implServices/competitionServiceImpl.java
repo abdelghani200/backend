@@ -2,13 +2,17 @@ package com.aftas.backend.services.implServices;
 
 import com.aftas.backend.exception.NotFoundException;
 import com.aftas.backend.models.dtos.competition.CompetitionDto;
+import com.aftas.backend.models.dtos.ranking.RegistrationRequestDto;
 import com.aftas.backend.models.entities.Competition;
+import com.aftas.backend.models.entities.Member;
 import com.aftas.backend.repository.competitionRepository;
+import com.aftas.backend.repository.memberRepository;
 import com.aftas.backend.services.interfaceServices.competitionService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class competitionServiceImpl implements competitionService {
@@ -19,6 +23,8 @@ public class competitionServiceImpl implements competitionService {
     @Autowired
     private ModelMapper modelMapper;
 
+    @Autowired
+    private memberRepository Repo_member;
 
     @Override
     public CompetitionDto saveCompetition(CompetitionDto competitionDto) {
@@ -49,4 +55,5 @@ public class competitionServiceImpl implements competitionService {
 
         Repo_competition.delete(competition);
     }
+
 }
