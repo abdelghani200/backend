@@ -10,4 +10,6 @@ public interface memberService {
 
     MemberDto updateMember(MemberDto memberDto, Long id);
 
+    void deleteMember(Long id);
+
 }

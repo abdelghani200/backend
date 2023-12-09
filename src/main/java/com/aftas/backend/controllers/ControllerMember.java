@@ -26,5 +26,10 @@ public class ControllerMember {
         return ServiceMember.updateMember(memberDto, id);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteMember(@PathVariable Long id) {
+        ServiceMember.deleteMember(id);
+    }
+
 
 }

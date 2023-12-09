@@ -45,5 +45,13 @@ public class memberServiceImpl implements memberService {
         return modelMapper.map(updateMember, MemberDto.class);
     }
 
+    @Override
+    public void deleteMember(Long id) {
+        Member member = Repo_member.findById(id)
+                .orElseThrow(()-> new NotFoundException("Member not found with ID" + id));
+
+        Repo_member.delete(member);
+    }
+
 
 }
