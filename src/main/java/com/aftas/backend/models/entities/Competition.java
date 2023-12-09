@@ -27,7 +27,7 @@ public class Competition implements Serializable {
     @Column(unique = true, nullable = false)
     private String code;
 
-    @NotBlank(message = "Date is required")
+    @NotNull(message = "Date is required")
     private LocalDate date;
 
     @NotNull(message = "Start time is required")
