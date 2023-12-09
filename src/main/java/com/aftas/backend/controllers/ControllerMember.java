@@ -21,6 +21,10 @@ public class ControllerMember {
         return ServiceMember.saveMember(memberDto);
     }
 
+    @PutMapping("/{id}")
+    public MemberDto updateMember(@Valid @RequestBody MemberDto memberDto,@PathVariable Long id){
+        return ServiceMember.updateMember(memberDto, id);
+    }
 
 
 }

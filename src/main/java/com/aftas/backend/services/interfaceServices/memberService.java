@@ -8,6 +8,6 @@ public interface memberService {
 
     MemberDto saveMember(MemberDto member);
 
-
+    MemberDto updateMember(MemberDto memberDto, Long id);
 
 }

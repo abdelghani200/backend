@@ -28,5 +28,22 @@ public class memberServiceImpl implements memberService {
         return modelMapper.map(savedMember, MemberDto.class);
     }
 
+    @Override
+    public MemberDto updateMember(MemberDto memberDto, Long id) {
+        Member existingMember = Repo_member.findById(id)
+                .orElseThrow(()-> new NotFoundException("Member not found with ID" + id));
+
+        existingMember.setName(memberDto.getName());
+        existingMember.setFamilyName(memberDto.getFamilyName());
+        existingMember.setAccessionDate(memberDto.getAccessionDate());
+        existingMember.setNationality(memberDto.getNationality());
+        existingMember.setIdentityNumber(memberDto.getIdentityNumber());
+        existingMember.setIdentityNumber(memberDto.getIdentityNumber());
+
+        Member updateMember = Repo_member.save(existingMember);
+
+        return modelMapper.map(updateMember, MemberDto.class);
+    }
+
 
 }
