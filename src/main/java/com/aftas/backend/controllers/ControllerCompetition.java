@@ -23,4 +23,9 @@ public class ControllerCompetition {
         return ServiceCompetition.updateCompetition(competitionDto, code);
     }
 
+    @DeleteMapping("/{code}")
+    public void deleteCompetition(@PathVariable String code) {
+        ServiceCompetition.deleteCompetition(code);
+    }
+
 }

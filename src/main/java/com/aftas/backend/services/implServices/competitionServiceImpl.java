@@ -27,7 +27,6 @@ public class competitionServiceImpl implements competitionService {
         return modelMapper.map(Repo_competition.save(competition), CompetitionDto.class);
     }
 
-    @Transactional
     @Override
     public CompetitionDto updateCompetition(CompetitionDto competitionDto, String code) {
         Competition existingCompetition = Repo_competition.findById(code)
@@ -41,5 +40,13 @@ public class competitionServiceImpl implements competitionService {
         Competition updateCompetition = Repo_competition.save(existingCompetition);
 
         return modelMapper.map(updateCompetition, CompetitionDto.class);
+    }
+
+    @Override
+    public void deleteCompetition(String code) {
+        Competition competition = Repo_competition.findById(code)
+                .orElseThrow(()->new NotFoundException("Competition not found with" + code));
+
+        Repo_competition.delete(competition);
     }
 }
