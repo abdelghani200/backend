@@ -53,5 +53,15 @@ public class memberServiceImpl implements memberService {
         Repo_member.delete(member);
     }
 
+    @Override
+    public MemberDto rechercheMember(String searchTerm) {
+        List<Member> searchResults = Repo_member.searchMembers(searchTerm);
+        if (searchResults.isEmpty()) {
+            throw new NotFoundException("No members found matching the search term: " + searchTerm);
+        }
+
+        return modelMapper.map(searchResults.get(0), MemberDto.class);
+    }
+
 
 }

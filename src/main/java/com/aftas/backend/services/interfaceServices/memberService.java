@@ -12,4 +12,6 @@ public interface memberService {
 
     void deleteMember(Long id);
 
+    MemberDto rechercheMember(String searchTerm);
+
 }

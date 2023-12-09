@@ -31,5 +31,10 @@ public class ControllerMember {
         ServiceMember.deleteMember(id);
     }
 
+    @GetMapping("/search")
+    public MemberDto searchMembers(@RequestParam String searchTerm){
+        return ServiceMember.rechercheMember(searchTerm);
+    }
+
 
 }

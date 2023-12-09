@@ -9,5 +9,7 @@ import java.util.List;
 
 public interface memberRepository extends JpaRepository<Member,Long> {
 
+    @Query("SELECT m FROM Member m WHERE LOWER(m.name) = LOWER(:searchTerm) OR CAST(m.num AS string) = :searchTerm OR LOWER(m.familyName) = LOWER(:searchTerm)")
+    List<Member> searchMembers(@Param("searchTerm") String searchTerm);
 
 }
