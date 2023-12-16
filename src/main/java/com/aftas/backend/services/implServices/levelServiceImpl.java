@@ -20,8 +20,23 @@ public class levelServiceImpl implements levelService {
     @Override
     public LevelDto saveLevel(LevelDto levelDto) {
         Level level = modelMapper.map(levelDto, Level.class);
+
+        validatePoints(level);
+
         Level savedLevel = Repo_Level.save(level);
 
         return modelMapper.map(savedLevel, LevelDto.class);
     }
+
+    private void validatePoints(Level level) {
+        Integer pointsOfLatestLevel = Repo_Level.findPointsOfLatestLevel();
+
+        if (pointsOfLatestLevel != null) {
+            if (level.getPoints() < pointsOfLatestLevel) {
+                throw new IllegalArgumentException("Le nombre de points doit être plus élevé que le niveau précédent.");
+            }
+        }
+    }
+
+
 }
