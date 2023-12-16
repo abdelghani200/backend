@@ -1,15 +1,20 @@
 package com.aftas.backend.services.implServices;
 
 import com.aftas.backend.exception.NotFoundException;
+import com.aftas.backend.models.dtos.competition.CompetitionDtoRes;
 import com.aftas.backend.models.dtos.member.MemberDto;
+import com.aftas.backend.models.dtos.member.MemberDtoRes;
 import com.aftas.backend.models.entities.Member;
 import com.aftas.backend.repository.memberRepository;
 import com.aftas.backend.services.interfaceServices.memberService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class memberServiceImpl implements memberService {
@@ -19,6 +24,17 @@ public class memberServiceImpl implements memberService {
 
     @Autowired
     private ModelMapper modelMapper;
+
+
+    @Override
+    public Page<MemberDtoRes> getAllMembers(Pageable pageable) {
+        return Repo_member.findAll(pageable).map(member -> modelMapper.map(member, MemberDtoRes.class));
+    }
+
+    @Override
+    public List<MemberDtoRes> AllMembers() {
+        return Repo_member.findAll().stream().map(member -> modelMapper.map(member, MemberDtoRes.class)).collect(Collectors.toList());
+    }
 
     @Override
     public MemberDto saveMember(MemberDto memberDto) {
