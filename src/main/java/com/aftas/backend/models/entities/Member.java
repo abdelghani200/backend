@@ -46,10 +46,10 @@ public class Member implements Serializable {
     @Pattern(regexp = "[0-9]{10}", message = "Identity number must be a 10-digit number")
     private String identityNumber;
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
     private List<Ranking> rankings;
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
     private List<Hunting> huntings;
 
 }

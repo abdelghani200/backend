@@ -1,6 +1,7 @@
 package com.aftas.backend.models.dtos.ranking;
 
 import com.aftas.backend.enums.IdentityDocumentType;
+import com.aftas.backend.models.entities.RankingEmbedded;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,7 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RegistrationRequestDto {
 
-    private Long memberNumero;
+    private RankingEmbedded id;
+    private Long memberNum;
     private String competitionCode;
     private Integer rank = 0;
     private Integer score = 0;

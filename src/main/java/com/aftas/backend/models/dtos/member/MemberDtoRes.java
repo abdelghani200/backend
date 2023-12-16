@@ -1,18 +1,17 @@
 package com.aftas.backend.models.dtos.member;
 
 import com.aftas.backend.enums.IdentityDocumentType;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
 import java.time.LocalDate;
+
 
 @Data
 @NoArgsConstructor
-public class MemberDto implements Serializable {
+@AllArgsConstructor
+public class MemberDtoRes {
 
     private Long num;
     private String name;

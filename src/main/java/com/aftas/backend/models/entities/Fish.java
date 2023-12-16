@@ -28,11 +28,11 @@ public class Fish implements Serializable {
     @Min(value = 0)
     private Double averageWeight;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "level_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "level_code")
     private Level level;
 
-    @OneToMany(mappedBy = "fish")
+    @OneToMany(mappedBy = "fish", fetch = FetchType.LAZY)
     private List<Hunting> huntings;
 
 

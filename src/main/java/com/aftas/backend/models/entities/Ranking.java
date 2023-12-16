@@ -22,14 +22,14 @@ public class Ranking implements Serializable {
     @EmbeddedId
     private RankingEmbedded id;
 
-    @MapsId("competitionCode")
     @ManyToOne
-    @JoinColumn(name = "competition_code")
+    @MapsId("competitionCode")
+    @JoinColumn(name = "competition_code", referencedColumnName = "code")
     private Competition competition;
 
-    @MapsId("memberNum")
     @ManyToOne
-    @JoinColumn(name = "member_num")
+    @MapsId("memberNum")
+    @JoinColumn(name = "member_num", referencedColumnName = "num")
     private Member member;
 
     @NotNull(message = "rank is required")

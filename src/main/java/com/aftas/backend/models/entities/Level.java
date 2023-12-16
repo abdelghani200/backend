@@ -30,7 +30,7 @@ public class Level {
     @Min(value = 0)
     private Integer points;
 
-    @OneToMany(mappedBy = "level")
+    @OneToMany(mappedBy = "level", fetch = FetchType.LAZY)
     private List<Fish> fishList;
 
 }

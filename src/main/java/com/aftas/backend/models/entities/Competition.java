@@ -46,10 +46,10 @@ public class Competition implements Serializable {
     @Min(value = 0, message = "Amount must be greater than or equal to 0")
     private Double amount;
 
-    @OneToMany(mappedBy = "competition")
+    @OneToMany(mappedBy = "competition", fetch = FetchType.EAGER)
     private List<Ranking> rankingList;
 
-    @OneToMany(mappedBy = "competition")
+    @OneToMany(mappedBy = "competition",  fetch = FetchType.EAGER)
     private List<Hunting> huntings;
 
 }
