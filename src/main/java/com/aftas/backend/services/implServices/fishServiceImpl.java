@@ -2,6 +2,7 @@ package com.aftas.backend.services.implServices;
 
 import com.aftas.backend.exception.NotFoundException;
 import com.aftas.backend.models.dtos.fish.FishDto;
+import com.aftas.backend.models.dtos.fish.FishDtoRes;
 import com.aftas.backend.models.entities.Fish;
 import com.aftas.backend.models.entities.Level;
 import com.aftas.backend.repository.fishRepository;
@@ -10,6 +11,9 @@ import com.aftas.backend.services.interfaceServices.fishService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class fishServiceImpl implements fishService {
@@ -35,5 +39,10 @@ public class fishServiceImpl implements fishService {
         Fish savedFish = Repo_fish.save(fish);
 
         return modelMapper.map(savedFish, FishDto.class);
+    }
+
+    @Override
+    public List<FishDtoRes> getFish() {
+        return Repo_fish.findAll().stream().map(fish -> modelMapper.map(fish, FishDtoRes.class)).collect(Collectors.toList());
     }
 }
